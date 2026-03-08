@@ -102,7 +102,7 @@ body {
   animation-name: chompAnimatedToRight;
 }
 @keyframes chompAnimatedToRight {
-  from { transform: translateX(100vw); }
+  to { transform: translateX(100vw); }
 }
 
 .chomp__spleen {
