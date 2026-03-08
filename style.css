@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow: hidden;
+  background: grey;
+}
+
+.bug-container,
+.spleen-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.bug {
+  height: 47px;
+  width: 69px;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5));
+  opacity: 0;
+}
+
+.bug--animate-in {
+  animation: bugAnimateIn 1s forwards ease-in;
+}
+@keyframes bugAnimateIn {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.25));
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+  }
+}
+
+.bug-container--transition-movement,
+.spleen-container--transition-movement {
+  transition: transform;
+  transition-timing-function: cubic-bezier(1,0,.37,.51);
+}
+.spleen {
+  height: 50px;
+  width: 100px;
+}
+
+.chomp-container {
+  position: absolute;
+  top: 0;
+  width: 50vw;
+  height: 100vw;
+  opacity: 0;
+}
+
+.chomp-container--from-left,
+.chomp-container--from-right {
+  opacity: 1;
+  transform: translateX(0vw);
+}
+
+.chomp-container--from-left {
+  left: 0;
+  animation-name: chompAnimatedFromLeft;
+}
+@keyframes chompAnimatedFromLeft {
+  from { transform: translateX(-50vw); }
+}
+
+.chomp-container--from-right {
+  right: 0;
+  animation-name: chompAnimatedFromRight;
+}
+@keyframes chompAnimatedFromRight {
+  from { transform: translateX(50vw); }
+}
+
+.chomp-container--to-left {
+  animation-name: chompAnimatedToLeft;
+}
+@keyframes chompAnimatedToLeft {
+  to { transform: translateX(-100vw); }
+}
+
+.chomp-container--to-right {
+  animation-name: chompAnimatedToRight;
+}
+@keyframes chompAnimatedToRight {
+  from { transform: translateX(100vw); }
+}
+
+.chomp-container--fade-out {
+  animation-name: chompAnimatedFadeOut;
+  animation-fill-mode: forwards;
+}
+@keyframes chompAnimatedFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.chomp__spleen {
+  position: absolute;
+  height: 100vh;
+}
+
+.chomp-container--from-left .chomp__spleen {
+  left: -125%;
+}
+
+.chomp-container--from-right .chomp__spleen {
+  right: -125%;
+}
+
+.chomp__bug {
+  position: absolute;
+  height: 33vh;
+  top: calc(50% - (50vh));
+}
+
+.chomp-container--from-left .chomp__bug {
+  left: 75%;
+}
+
+.chomp-container--from-right .chomp__bug {
+  right: 75%;
+}
