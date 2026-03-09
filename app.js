@@ -44,17 +44,20 @@ async function initImages() {
   const [
     imageSpleenFacingLeft,
     imageSpleenFacingRight,
-    imageSpleenBig
+    imageSpleenChomp,
+    imageSpleenChompStill
   ] = await Promise.all([
-    initImage('spleen--facing-left.png'),
-    initImage('spleen--facing-right.png'),
-    initImage('spleen--big.png'),
+    initImage('spleen--facing-left.gif'),
+    initImage('spleen--facing-right.gif'),
+    initImage('spleen--chomp.gif'),
+    initImage('spleen--chomp-still.gif'),
   ]);
 
   return {
     imageSpleenFacingLeft,
     imageSpleenFacingRight,
-    imageSpleenBig
+    imageSpleenChomp,
+    imageSpleenChompStill
   }
 }
 
@@ -139,11 +142,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const chompContainerElement = document.querySelector('.chomp-container');
   const chompEmojiElement = chompContainerElement.querySelector('.chomp__emoji');
   const chompSpleenElement = chompContainerElement.querySelector('.chomp__spleen');
+  const chompReactionElement = chompContainerElement.querySelector('.chomp__reaction');
 
   const {
     imageSpleenFacingLeft,
     imageSpleenFacingRight,
-    imageSpleenBig,
+    imageSpleenChomp,
+    imageSpleenChompStill,
   } = await initImages();
 
   async function runSpleenAnimation({ emoji }) {
@@ -270,23 +275,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     spleenContainerElement.style.transitionTimingFunction = 'ease-out';
 
     await wait(kidnapTravelDurationMs);
+    
+    const slideInOutChompDurationMs = 1000;
 
-    const slideInChompDurationMs = 1000;
     chompContainerElement.classList.add(
       `chomp-container--from-${isSpleenKidnappingToRight ? 'right' : 'left'}`
     );
-    chompContainerElement.style.animationDuration = `${slideInChompDurationMs}ms`;
-    chompSpleenElement.src = imageSpleenBig;
-    
-    const chompAnimationDurationMs = slideInChompDurationMs + 1000;
+    chompContainerElement.style.animationDuration = `${slideInOutChompDurationMs}ms`;
+    chompSpleenElement.src = imageSpleenChompStill;
 
-    await wait(chompAnimationDurationMs);
+    await wait(slideInOutChompDurationMs);
+
+     chompSpleenElement.src = imageSpleenChomp;
+
+    const chompingDurationMs = 2000;
+    chompEmojiElement.style.animationName = 'chompEmoji';
+    chompEmojiElement.style.animationDuration = `${chompingDurationMs}ms`;
+
+    await wait(chompingDurationMs);
+
+    const reactionDelayMs = 500;
+    const reactionDurationMs = 1000;
+
+    chompReactionElement.style.animationName = 'chompReaction';
+    chompReactionElement.style.animationDuration = `${reactionDurationMs}ms`;
+    chompReactionElement.style.animationDelay = `${reactionDelayMs}ms`;
+    chompSpleenElement.src = imageSpleenChompStill;
+
+    await wait(reactionDelayMs + reactionDurationMs);
 
     chompContainerElement.classList.add(
       `chomp-container--to-${isSpleenKidnappingToRight ? 'right' : 'left'}`
     );
 
-    // document.body.style.opacity = '0';
+    await wait(slideInOutChompDurationMs);
+
+    document.body.style.opacity = '0';
   }
 
   feedSpleenChannelPointRedemptionEvents((data) => {
@@ -302,5 +326,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
 
-    runSpleenAnimation({ emoji: '❤️' });
+    runSpleenAnimation({ emoji: '🐛' });
 });
