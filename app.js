@@ -249,7 +249,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await wait(travelDurationMs);
 
-    const isSpleenKidnappingToRight = emojiPosX > (window.innerWidth / 2);
+    // temporary make it so spleen is always coming from right
+    // const isSpleenKidnappingToRight = emojiPosX > (window.innerWidth / 2);
+    const isSpleenKidnappingToRight = true;
 
     spleenElement.src = isSpleenKidnappingToRight ?
       imageSpleenFacingRight :  
