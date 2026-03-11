@@ -112,7 +112,7 @@ function feedSpleenChannelPointRedemptionEvents(callback) {
       return;
     }
 
-    if (json?.name !== "custom-event:feed-spleen") {
+    if (json?.name !== "custom-event:spleen-overlay") {
       return;
     }
 
@@ -324,7 +324,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     runSpleenAnimation({ emoji });
   });
-
-
-    runSpleenAnimation({ emoji: '🐛' });
 });
