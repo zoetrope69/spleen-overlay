@@ -121,35 +121,16 @@ body {
 
 .chomp__emoji {
   position: absolute;
-  top: calc(50vh - 32px);
+  top: calc(50vh - 60px);
   font-size: 128px;
-  animation-fill-mode: forwards;
 }
 
 .chomp-container--from-left .chomp__emoji {
-  left: 424px;
+  left: 300px;
 }
 
 .chomp-container--from-right .chomp__emoji {
-  right: 424px;
-}
-
-@keyframes chompEmoji {
-  0%, 24% {
-    transform: scale(0.8);
-  }
-  25%, 49% {
-    transform: scale(0.6);
-  }
-  50%, 74% {
-    transform: scale(0.4);
-  }
-  75%, 99% {
-    transform: scale(0.2);
-  }
-  100% {
-    transform: scale(0);
-  }
+  right: 300px;
 }
 
 .chomp__reaction {
@@ -166,7 +147,6 @@ body {
 .chomp-container--from-right .chomp__reaction {
   right: 350px;
 }
-
 
 @keyframes chompReaction {
   0% {

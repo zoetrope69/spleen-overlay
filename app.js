@@ -286,23 +286,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await wait(slideInOutChompDurationMs);
 
-     chompSpleenElement.src = imageSpleenChomp;
-
-    const chompingDurationMs = 2000;
-    chompEmojiElement.style.animationName = 'chompEmoji';
-    chompEmojiElement.style.animationDuration = `${chompingDurationMs}ms`;
-
-    await wait(chompingDurationMs);
-
-    const reactionDelayMs = 500;
-    const reactionDurationMs = 1000;
+    const reactionDurationMs = 3000;
 
     chompReactionElement.style.animationName = 'chompReaction';
     chompReactionElement.style.animationDuration = `${reactionDurationMs}ms`;
-    chompReactionElement.style.animationDelay = `${reactionDelayMs}ms`;
-    chompSpleenElement.src = imageSpleenChompStill;
 
-    await wait(reactionDelayMs + reactionDurationMs);
+    await wait(reactionDurationMs);
 
     chompContainerElement.classList.add(
       `chomp-container--to-${isSpleenKidnappingToRight ? 'right' : 'left'}`
