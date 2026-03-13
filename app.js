@@ -253,7 +253,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await wait(travelDurationMs);
 
-    const isSpleenKidnappingToRight = emojiPosX > (window.innerWidth / 2);
+    // temp disabled so only shows on right
+    // const isSpleenKidnappingToRight = emojiPosX > (window.innerWidth / 2);
+    const isSpleenKidnappingToRight = true;
 
     spleenElement.src = isSpleenKidnappingToRight ?
       imageSpleenFacingRight :  
