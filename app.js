@@ -253,9 +253,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await wait(travelDurationMs);
 
-    // temporary make it so spleen is always coming from right
-    // const isSpleenKidnappingToRight = emojiPosX > (window.innerWidth / 2);
-    const isSpleenKidnappingToRight = true;
+    const isSpleenKidnappingToRight = emojiPosX > (window.innerWidth / 2);
 
     spleenElement.src = isSpleenKidnappingToRight ?
       imageSpleenFacingRight :  
@@ -389,7 +387,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     runSpleenAnimation({ emoji });
   });
-
-
-    runSpleenAnimation({ emoji: '🍔' });
 });
